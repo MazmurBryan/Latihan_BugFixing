@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject gameOverPage;
 	public GameObject countdownPage;
 	public Text scoreText;
-	public int _score;
+
 	
 
 	enum PageState{
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour {
 		Countdown
 	}
 
-	//string score = "";
+	int score = 0;
     bool gameOver = true;
 
 	public bool GameOver { get { return gameOver; } }
@@ -58,21 +59,21 @@ public class GameManager : MonoBehaviour {
 
 	void OnPlayerDied(){
 		gameOver = true;
-		int savedScore = PlayerPrefs.GetInt ("highscore");
-		if (_score > savedScore) {
-            //score = _score.ToString();
-            PlayerPrefs.SetInt ("highscore", _score);
+		int savedScore = PlayerPrefs.GetInt ("highscore");//PlayerPrefs.getint func for saving score
+		if (score > savedScore) {
+            
+            PlayerPrefs.SetInt ("highscore", score);
 			
 		
 		}
-		_score = 0;
+		score = 0;
 		SetPageState (PageState.GameOver);
 	}
 
 	void OnPlayerScored(){
 
-		_score = _score + 1;
-		scoreText.text = _score.ToString();
+		score = score + 1;
+		scoreText.text = score.ToString();
 	}
 
 	void SetPageState(PageState state){

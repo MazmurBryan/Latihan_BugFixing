@@ -1027,7 +1027,6 @@ MonoBehaviour:
   gameOverPage: {fileID: 1572911945}
   countdownPage: {fileID: 190962899}
   scoreText: {fileID: 1724245537}
-  _score: 0
 --- !u!1 &972887360
 GameObject:
   m_ObjectHideFlags: 0
